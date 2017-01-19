@@ -1,0 +1,13 @@
+---
+- debug: var=s3_sign_list
+- name: S3 Sign Objects
+  s3_sign:
+      s3_bucket_name='{{ item.s3_bucket_name | default(s3_sign_bucket_name) }}'
+      name="{{ s3_sign_list_key }}"
+      expire="{{ s3_sign_list_expire | default(item.s3_sign_list_expire) | default(omit) }}"
+      aws_access_key="{{ s3_sign_aws_access_key | default(omit) }}"
+      aws_secret_key="{{ s3_sign_aaws_secret_key | default(omit) }}"
+      region="{{ item.s3_sign_region | default(s3_sign_region)| default(omit) }}"
+  with_items: "{{ s3_sign_list }}"
+  register: s3_signed_urls
+  when: "{{ s3_sign_list is defined }}"
