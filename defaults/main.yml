@@ -1,0 +1,14 @@
+---
+## Bucket Name
+s3_sign_bucket_name      :  None
+
+## S3 Sign list
+s3_sign_list             : []
+# s3_sign_list  :
+#                 - name           : object1
+#                 - name           : object2
+#                 - name           : object3
+#                   s3_bucket_name : "bucket_b"
+
+## Key in list
+s3_sign_list_key         : "{{ item.name }}"
